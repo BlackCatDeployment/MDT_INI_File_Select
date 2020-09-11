@@ -1,22 +1,23 @@
-Function Wizard_Display
-	MyHeader.style.display = "none"
-	RightWizardButtons.style.backgroundcolor = "#3373F2" 
-End function
-
 Function Listprofile	
 	Dim oFolder, colINI, ObjOption, objIni, INI_folder, ProfileName
-	INI_folder = oEnvironment.Item("DeployDrive") & "\INI_folder\" 
+	INI_folder = oEnvironment.Item("DeployDrive") & "\Deploy\INI_folder\" 
 	If oFSO.FolderExists(INI_folder) Then
 		Set oFolder = oFSO.GetFolder(INI_folder)
-		Set colINI = oFolder.Files		
+		Set colINI = oFolder.Files
+
+		Set ObjOption = document.createElement("OPTION")
+		ObjOption.Text = "Select a Profile..."
+		ObjOption.value = "CustomSettings.ini"
+		profile.Add(ObjOption)	
+
 		If colINI.Count > 0 Then
 			For Each objIni in colINI
 				ProfileName = objIni.name
 				test = objIni
 				If UCase(oFSO.GetExtensionName(objIni.name)) = "INI" Then	
-					Set ObjOption = document.createElement("OPTION")				
+					Set ObjOption = document.createElement("OPTION")
 					ObjOption.Text = objIni.Name
-					ObjOption.value = ProfileName												
+					ObjOption.value = ProfileName
 					profile.Add(ObjOption)
 				End If
 			Next			
@@ -34,13 +35,11 @@ Function Listprofile
 End function	
 
 Function On_Select_Profile
-	Dim objOption, My_Profile, INI_folder
+	Dim objOption, My_Profile
     For Each objOption in profile.Options	
         If objOption.Selected Then
-			My_Profile = oEnvironment.Item("DeployDrive") & "\INI_folder\" & ObjOption.value
+			My_Profile = oEnvironment.Item("DeployDrive") & "\Deploy\INI_folder\" & ObjOption.value
 			oEnvironment.Item("RulesFile") = My_Profile
         End If
     Next
 End function 
-
-
