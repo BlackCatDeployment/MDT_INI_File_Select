@@ -15,24 +15,23 @@
 <Wizard>
 	<Global>
 		<CustomScript>INI_profiles.vbs</CustomScript>			
-		<HideNavigation>true</HideNavigation>
 	</Global>
-	<Pane id="hhh" title="My New Wizard">
+	<Pane id="ProfWiz" title="Profiles Wizard">
+	<HideBackNext>false</HideBackNext>
    <Body>
    <![CDATA[
 <div>	
 	<br>
-	<h1><img src="SD_Profiles.png" style="vertical-align:middle;" width=40px height=40px>&nbsp;INI profile selection</h1>
+	<h1><img src="INI_Profiles.png" style="vertical-align:middle;" width=40px height=40px>&nbsp;Profile selection</h1>
 	<div style="margin-left:25px">
-			<p>Please select an INI profile file to apply</p>
+			<p>Please select a Deployment Profile file to apply</p>
 			<table>
 				<tr>
-					<td>INI profiles : </td>
+					<td>Profiles : </td>
 					<td>
 						<select id="profile" onchange="On_Select_Profile" language="vbscript"/>	
 					</td>
 					<td>
-						<!--<span style="margin-left:15px"><label class=ErrMsg id=ProfileFolder_Error>* No INI Profile folder found</label></span>	-->
 						<span style="margin-left:15px" id ="ProfileFolder_Error"></span>							
 					</td>
 				</tr>
@@ -41,7 +40,6 @@
 </div>	
 
 ]]></Body>
-		<Initialization><![CDATA[Wizard_Display]]></Initialization>
 		<Initialization><![CDATA[Listprofile]]></Initialization>
 	</Pane>
 </Wizard>
